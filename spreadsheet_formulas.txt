@@ -14,3 +14,49 @@ Explanation
 tasks!B:B: This is the value of episode ID in both sheets.
 B2: This is the first cell to place the result.
 tasks!M:M: This is the range of values to sum on column M on the "tasks" sheet.
+
+-------
+
+
+Textjoin scores to names in a single csv cell.
+Using this to create a column that info from task scores, matches it with appropriate contestants, and sorts by highest score.
+
+
+The formula takes a list of names and their corresponding scores,
+formats them as "Name (Score)", sorts them based on scores from
+highest to lowest, and then concatenates them into a single comma-separated string.
+
+
+=TEXTJOIN(", ", TRUE, INDEX(SORT(ARRAYFORMULA(TRANSPOSE(SPLIT(R2, ",")) & " (" & TRANSPOSE(M2:Q2) & ")"), VALUE(REGEXEXTRACT(ARRAYFORMULA(TRANSPOSE(SPLIT(R2, ",")) & " (" & TRANSPOSE(M2:Q2) & ")"), "\((\d+)\)")), FALSE), , 1))
+
+
+Explanation. There's a lot going on here:
+
+    SPLIT(R2, ","):
+        This splits the CSV in cell R2 into an array of names.
+
+    TRANSPOSE(SPLIT(R2, ",")):
+        Transposes the array of names into a vertical array (one name per row).
+
+    TRANSPOSE(M2:Q2):
+        Transposes the horizontal array of scores in M2:Q2 into a vertical array (one score per row).
+
+    ARRAYFORMULA(TRANSPOSE(SPLIT(R2, ",")) & " (" & TRANSPOSE(M2:Q2) & ")"):
+        Combines the names and their corresponding scores into a single array with each entry formatted as "Name (Score)".
+
+    REGEXEXTRACT(ARRAYFORMULA(TRANSPOSE(SPLIT(R2, ",")) & " (" & TRANSPOSE(M2:Q2) & ")"), "\((\d+)\)"):
+        Extracts the numeric scores from each formatted string using regular expressions.
+
+    VALUE(REGEXEXTRACT(...)):
+        Converts the extracted scores from text to numeric values.
+
+    SORT(..., VALUE(REGEXEXTRACT(...)), FALSE):
+        Sorts the array of formatted names and scores based on the numeric values extracted, in descending order (highest to lowest).
+
+    INDEX(SORT(...), , 1):
+        Returns the sorted array. The , , 1 ensures that all sorted values are included.
+
+    TEXTJOIN(", ", TRUE, INDEX(...)):
+        Joins all the sorted name-score pairs into a single CSV string, separated by commas.
+
+----
