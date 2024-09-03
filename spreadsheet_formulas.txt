@@ -10,6 +10,3 @@ This formula will sum all the values in column M on the "tasks" sheet where the 
 tasks!B:B: This is the range where you're checking for the condition (i.e., column B on the "tasks" sheet).
 B2: This is the value you're looking for in column B on the "tasks" sheet.
 tasks!M:M: This is the range of values you want to sum (i.e., column M on the "tasks" sheet) where the condition is met.
-
-
-
