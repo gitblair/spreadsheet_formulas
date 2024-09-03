@@ -1,12 +1,16 @@
-Taskmaster Spreadsheet Formulas
+Spreadsheet Formulas
 
 
-This formula will sum all the values in column M on the "tasks" sheet where the corresponding value in column B matches the value in cell B2.
+
+Sum of matching range from another sheet
+
+Using this formula to provide sum of episode scores per contestant based on score per task where episode ID matches in both sheets.
+It will sum all the values in column M on the "tasks" sheet where the corresponding value in column B matches the value in cell B2.
 
 
 ‭=SUMIF(tasks!B:B, B2, tasks!M:M)‬
 
-
-tasks!B:B: This is the range where you're checking for the condition (i.e., column B on the "tasks" sheet).
-B2: This is the value you're looking for in column B on the "tasks" sheet.
-tasks!M:M: This is the range of values you want to sum (i.e., column M on the "tasks" sheet) where the condition is met.
+Explanation
+tasks!B:B: This is the value of episode ID in both sheets.
+B2: This is the first cell to place the result.
+tasks!M:M: This is the range of values to sum on column M on the "tasks" sheet.
