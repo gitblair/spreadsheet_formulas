@@ -15,7 +15,9 @@ tasks!B:B: This is the value of episode ID in both sheets.
 B2: This is the first cell to place the result.
 tasks!M:M: This is the range of values to sum on column M on the "tasks" sheet.
 
--------
+
+
+------------
 
 
 Textjoin scores to names in a single csv cell.
@@ -59,4 +61,33 @@ Explanation. There's a lot going on here:
     TEXTJOIN(", ", TRUE, INDEX(...)):
         Joins all the sorted name-score pairs into a single CSV string, separated by commas.
 
-----
+
+------------
+
+
+Filename as Cell Date
+
+Goal 1
+Take the date from a filename and put in in a cell as Date: 09.03.2024
+
+The filename as an example is: 09.03.2024.xlsx
+
+="Date: "&MID(CELL("filename",A65),FIND("[",CELL("filename",A65))+1,FIND("]", CELL("filename",A65))-FIND("[",CELL("filename",A65))-6)
+
+In this example I placed above in cell A65
+and it became Date: 09.03.2024
+
+Goal 2
+In another cell I want that result formatted it so instead of dots it's slashes.
+So in A3 I put:
+
+=SUBSTITUTE(A65,".","/")
+
+and A3 is now Date: 09/03/2024
+
+
+------------
+
+
+
+
