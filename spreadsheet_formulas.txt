@@ -115,6 +115,68 @@ This formula will return:
 
 
 
+------------
+
+
+Here's another fun one I'm using on the taskmaster spreadsheets.
+I needed the date range from another sheet but only where the series_id matches on it and my origin.
+And why not place a nice dash between the dates.
+
+=TEXT(MINIFS(episodes!E:E, episodes!A:A, H2), "MM/DD/YYYY") & " - " & TEXT(MAXIFS(episodes!E:E, episodes!A:A, H2), "MM/DD/YYYY")
+
+
+    MINIFS(episodes!E:E, episodes!A:A, H2):
+        MINIFS is used to find the minimum value within a range that meets specific criteria.
+        episodes!E:E specifies the range to search for the minimum date.
+        episodes!A:A specifies the criteria range where the series_id is located.
+        H2 is the criteria value that must match the series_id in column A of the 'episodes' sheet.
+        This function finds the earliest date from column E where the series_id in column A matches H2.
+
+    TEXT(MINIFS(...), "MM/DD/YYYY"):
+        TEXT converts the date returned by MINIFS into the specified date format, MM/DD/YYYY.
+
+    MAXIFS(episodes!E:E, episodes!A:A, H2):
+        MAXIFS is used to find the maximum value within a range that meets specific criteria.
+        Similar to MINIFS, it looks in episodes!E:E for the maximum date where the series_id in column A matches H2.
+
+    TEXT(MAXIFS(...), "MM/DD/YYYY"):
+        TEXT converts the date returned by MAXIFS into the MM/DD/YYYY format.
+
+    Concatenation (& " - " &):
+        This concatenates the earliest date, a dash (-), and the most recent date into a single text string.
+
+
+
+
+------------
+
+
+
+
+Easy one:
+
+Count the number of times my series_id value shows up on episodes series_id col
+So I can report the total number of episodes in a given series on my series sheet
+
+
+=COUNTIFS(episodes!E:E, A2)
+
+	episodes!E:E specifies the range to count within (where series_id values are located on my episodes sheet).
+	
+	A2 is the criteria (the series_id from my series sheet).
+
+
+
+
+
+------------
+
+
+
+
+
+
+
 
 
 
