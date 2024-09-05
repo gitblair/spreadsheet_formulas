@@ -67,6 +67,12 @@ Explanation. There's a lot going on here:
 
 Filename as Cell Date
 
+I'm using this to make work related daily logs.
+After I create an excel spreadsheet template including this neat formula,
+I use a bash shell script to make 30-31 copies standardized filenames (09.03.2024.xlsx)
+So the formula uses that filename plant the date in a cell in each daily form.
+
+
 Goal 1
 Take the date from a filename and put in in a cell as Date: 09.03.2024
 
@@ -87,6 +93,39 @@ and A3 is now Date: 09/03/2024
 
 
 ------------
+
+
+If this text, then this text or A column of Proper Names based on a column of Initials
+
+I'm using this in my Taskmaster spreadsheets to provide a proper name for series types.
+
+
+=IF(C2="S", "Regular Series", IF(C2="COC", "Champion of Champions", IF(C2="NYT", "New Years Treat", "")))
+
+
+Explanation
+
+Replace a cell with the reference to another cell.
+This formula will return:
+
+    "Regular Series" if the cell contains "S"
+    "Champion of Champions" if the cell contains "COC"
+    "New Years Treat" if the cell contains "NYT"
+    An empty string "" if the cell contains something else.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
