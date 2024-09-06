@@ -172,9 +172,44 @@ So I can report the total number of episodes in a given series on my series shee
 ------------
 
 
+Taskmaster task winner
+Return the names of the contestant from a CSV cell where the name match the highest score from a series of cells.
+
+
+=INDEX(SPLIT(R2, ","), MATCH(MAX(M2:Q2), M2:Q2, 0))
+	
+	SPLIT(R2, ","): Splits the names in R2 (CSV of names corresponding to the contestants) by commas.
+	
+	MAX(M2:Q2): Finds the highest score in M2:Q2.
+
+	MATCH(MAX(M2:Q2), M2:Q2, 0): Finds the position of the highest score in the range M2:Q2.
+
+	INDEX(SPLIT(R2, ","), ...): Returns the name that corresponds to the position of the highest score.
+
+
+BUT WAIT, THERE'S MORE:
+
+That was my original thinking, but there's a wrinkle.
+Sometimes a winner is not represented by highest number.
+In the case of a tie-breaker, a winner is represented by a checkmark.
+
+
+=IF(COUNTIF(M2:Q2, "✔"), INDEX(SPLIT(R2, ","), MATCH("✔", M2:Q2, 0)), INDEX(SPLIT(R2, ","), MATCH(MAX(M2:Q2), M2:Q2, 0)))
+
+
+	COUNTIF(M2:Q2, "✔"): Checks if there is any cell with a checkmark (✔) in the range M2:Q2.
+
+	INDEX(SPLIT(R2, ","), MATCH("✔", M2:Q2, 0)): If a checkmark exists, it returns the corresponding name from R2.
+
+	INDEX(SPLIT(R2, ","), MATCH(MAX(M2:Q2), M2:Q2, 0)): If no checkmark is found, it defaults to returning the name of the person with the highest score.
 
 
 
+
+
+
+
+------------
 
 
 
