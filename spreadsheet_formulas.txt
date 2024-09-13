@@ -211,6 +211,25 @@ In the case of a tie-breaker, a winner is represented by a checkmark.
 
 ------------
 
+I have a task_type column in my Taskmaster dataset.
+
+I evaluate several other columns with this formula
+To identify the task type:
+
+
+=IF(LEFT(L2,6)="Prize:", "PRIZE", IF(LEFT(L2,5)="Live:", "LIVE", IF(LEFT(L2,5)="Team:", "TEAM", IF(COUNTIF(M2:Q2, "✔"), "TIEBREAKER", IF(COUNTIF(M2:Q2, "–") > 3, "SOLO", "")))))
+
+
+
+Explained:
+
+    It first checks if L2 starts with "Prize:", "Live:", or "Team:" and returns the corresponding value.
+
+    If none of those conditions are met, it checks the range M2:Q2 for "✔" and returns "TIEBREAKER" if found.
+
+    If no "✔" is found, it then checks if the count of "-" in M2:Q2 is greater than 3 and returns "SOLO".
+
+    If none of the conditions are met, it leaves the cell empty.
 
 
 
@@ -219,6 +238,7 @@ In the case of a tie-breaker, a winner is represented by a checkmark.
 
 
 
+------------
 
 
 
